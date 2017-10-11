@@ -1,11 +1,6 @@
 # use parent image
 FROM ubuntu:14.04
 
-# set working directory
-WORKDIR /searchlight
-
-# copy project files from host to working directory in container
-ADD . /searchlight
 
 # for cmake 3.2 on ubuntu 14.04, required by or-tools
 RUN apt-get install software-properties-common -y
@@ -53,6 +48,13 @@ RUN apt-get install -y \
       ant ant-contrib ant-contrib-cpptasks \
       junit \
       libprotobuf-java
+
+# copy project files from host to working directory in container
+#ADD . /searchlight
+RUN git clone https://github.com/zheguang/searchlight.git /searchlight
+
+# set working directory
+WORKDIR /searchlight
 
 # libcsv
 WORKDIR /searchlight/third_party/libcsv
