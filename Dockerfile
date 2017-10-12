@@ -51,7 +51,7 @@ RUN apt-get install -y \
 
 # copy project files from host to working directory in container
 #ADD . /searchlight
-RUN git clone https://github.com/zheguang/searchlight.git /searchlight
+RUN git clone --recursive https://github.com/zheguang/searchlight.git /searchlight
 
 # set working directory
 WORKDIR /searchlight
