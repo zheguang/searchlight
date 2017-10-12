@@ -191,3 +191,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#
+# third_party
+#
+!third_party/**/*
