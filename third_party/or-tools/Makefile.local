@@ -1,0 +1,19 @@
+UNIX_PYTHON_VER = 2.7
+#UNIX_GFLAGS_DIR = /home/akalinin/git/or-tools/dependencies/install
+UNIX_GFLAGS_DIR = /usr
+#UNIX_PROTOBUF_DIR = /home/akalinin/git/or-tools/dependencies/install
+UNIX_PROTOBUF_DIR = /usr
+#UNIX_SPARSEHASH_DIR = /home/scidb/git/or-tools/dependencies/install
+UNIX_SPARSEHASH_DIR = /usr
+#UNIX_SWIG_BINARY = /home/akalinin/git/or-tools/dependencies/install/bin/swig
+#UNIX_CLP_DIR = /home/scidb/git/or-tools/dependencies/install
+UNIX_CLP_DIR = /usr
+#UNIX_CBC_DIR = /home/scidb/git/or-tools/dependencies/install
+UNIX_CBC_DIR = /usr
+
+
+UNIX_SCIP_TAG = 3.0.1
+
+LINUX_JDK_ROOT = /usr/lib/jvm/java
+
+UNIX_MONO_DIR = /usr
