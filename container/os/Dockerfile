@@ -5,12 +5,13 @@ FROM ubuntu:14.04
 # for cmake 3.2 on ubuntu 14.04, required by or-tools
 RUN apt-get install software-properties-common -y
 RUN add-apt-repository ppa:george-edison55/cmake-3.x -y
+RUN add-apt-repository ppa:andrei-pozolotin/maven3 -y
 RUN apt-get update
 
 RUN apt-get install -y \
       build-essential autoconf automake libtool cmake \
       gcc g++ \
-      git wget vim locate curl unzip
+      git wget vim locate curl unzip maven3 openjdk-7-jdk
 
 # or-tools deps
 RUN apt-get install -y \
@@ -40,17 +41,9 @@ RUN apt-get install -y \
       libreadline-dev \
       libblas-dev \
       liblapack-dev \
-      openjdk-6-jdk \
       libboost-all-dev \
       #protobuf-compiler libprotobuf-dev \
       libmpich-dev mpich \
       ant ant-contrib ant-contrib-cpptasks \
-      junit \
-      libprotobuf-java
-
-# copy project files from host to working directory in container
-#ADD . /searchlight
-RUN git clone --recursive https://github.com/zheguang/searchlight.git /searchlight
-
-# set working directory
-WORKDIR /searchlight
+      junit
+      #libprotobuf-java

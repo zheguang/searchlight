@@ -299,7 +299,8 @@ LPBINARIES = \
 # Makefile targets.
 
 # Main target
-cc: cplibs cpexe algorithmslibs graphlibs lplibs lpexe
+#cc: cplibs cpexe algorithmslibs graphlibs lplibs lpexe
+cc: cplibs algorithmslibs graphlibs lplibs
 
 # Clean target
 
@@ -361,11 +362,11 @@ clean_compat:
 # Individual targets.
 algorithmslibs: $(DYNAMIC_ALGORITHMS_DEPS) $(STATIC_ALGORITHMS_DEPS)
 
-cpexe: $(CPBINARIES)
+#cpexe: $(CPBINARIES)
 
 cplibs: $(DYNAMIC_CP_DEPS) $(STATIC_CP_DEPS)
 
-lpexe: $(LPBINARIES)
+#lpexe: $(LPBINARIES)
 
 lplibs: $(DYNAMIC_LP_DEPS) $(STATIC_LP_DEPS)
 

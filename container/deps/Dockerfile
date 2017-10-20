@@ -1,8 +1,9 @@
 # use parent image
-FROM sl-os
+FROM searchlight-os
 
-# protobuf 2.6.1 for or-tools
-WORKDIR /searchlight/third_party/protobuf-2.6.1
+# copy project files from host to working directory in container
+#ADD . /searchlight
+RUN git clone --recursive https://github.com/zheguang/searchlight.git /searchlight
 
 # libcsv for scidb
 WORKDIR /searchlight/third_party/libcsv
@@ -11,23 +12,40 @@ RUN cp /usr/share/automake-1.14/config.sub .
 RUN ./configure
 RUN make
 RUN make install
+RUN ldconfig
 
-
-## scidb
-#WORKDIR /searchlight/third_party/scidb-14.12.0.9095
-#RUN mkdir -p build
-#WORKDIR /searchlight/third_party/scidb-14.12.0.9095/build
-#RUN cmake ..
-#RUN make
-#RUN make install
+# protobuf 2.6.1 for or-tools
+WORKDIR /searchlight/third_party/protobuf-2.6.1
+RUN ./configure
+RUN make
+RUN make install
+RUN ldconfig
+WORKDIR /searchlight/third_party/protobuf-2.6.1/java
+RUN mvn package
+RUN ln -s /searchlight/third_party/protobuf-2.6.1/java/target/protobuf-java-2.6.1.jar /usr/share/java/protobuf.jar
 
 # or-tools
-#WORKDIR /searchlight/third_party/or-tools
-#RUN git checkout -b v6.5 v6.5
+WORKDIR /searchlight/third_party/or-tools
 # https://developers.google.com/optimization/introduction/installing.html#basic_install_unix
-# RUN make third_party
 # cpp
-#RUN make cc
+RUN mkdir -p objs/constraint_solver
+RUN mkdir -p objs/util
+RUN mkdir -p objs/base
+RUN mkdir -p objs/linear_solver
+RUN mkdir -p objs/sat
+RUN mkidr -p objs/algorithms
+RUN mkdir -p objs/graph
+RUN mkdir -p lib
+RUN make cc
+RUN ldconfig
+
+# scidb
+WORKDIR /searchlight/third_party/scidb-14.12
+RUN mkdir -p build
+WORKDIR /searchlight/third_party/scidb-14.12/build
+RUN cmake ..
+RUN make
+RUN make install
 
 # reset working directory
 WORKDIR /searchlight
