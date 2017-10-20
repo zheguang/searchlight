@@ -6,7 +6,7 @@ Group: Development/Libraries/Java
 Summary: SciDB Java and JDBC driver
 License: GPLv3
 BuildArch: noarch
-BuildRequires: ant ant-jdepend java-1.6.0-openjdk-devel junit
+BuildRequires: ant ant-jdepend java-1.7.0-openjdk-devel junit
 Requires: protobuf-java
 %description
 SciDB Java and JDBC driver
