@@ -1,7 +1,7 @@
-find_package(Java6)
+find_package(Java7)
 
-if (NOT JAVA6_FOUND)
-   message(FATAL_ERROR "Java 1.6 is currently the only supported version for building JDBC!")
+if (NOT JAVA7_FOUND)
+   message(FATAL_ERROR "Java 1.7 is currently the only supported version for building JDBC!")
 endif()
 
 set (ANT_BUILD_FILE ${CMAKE_CURRENT_SOURCE_DIR}/build.xml)
@@ -56,14 +56,14 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURC
                                                            ${CMAKE_CURRENT_BINARY_DIR}/logging.properties)
 execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/scidb4j.spec
                                                            ${CMAKE_CURRENT_BINARY_DIR}/scidb4j.spec)
-set (ENV{JAVA_HOME} "${Java6_HOME}")
+set (ENV{JAVA_HOME} "${Java7_HOME}")
 
 add_custom_target ( jdbc_build ALL DEPENDS ${JAR_OUTS})
 
 add_custom_command (OUTPUT ${JAR_OUTS}
 		   DEPENDS ${JAVA_SOURCES}
-		   COMMAND cp -r -f ${CMAKE_CURRENT_SOURCE_DIR}/example ${CMAKE_CURRENT_BINARY_DIR}\; cp -r -f ${CMAKE_CURRENT_SOURCE_DIR}/jdbctest ${CMAKE_CURRENT_BINARY_DIR}\; cp -r -f ${CMAKE_CURRENT_SOURCE_DIR}/jiquery ${CMAKE_CURRENT_BINARY_DIR}\; cp -r -f ${CMAKE_CURRENT_SOURCE_DIR}/scidb4j ${CMAKE_CURRENT_BINARY_DIR}\; export JAVA_HOME=${Java6_HOME}\; ant -f ${ANT_BUILD_FILE} -Dbasedir=${BASE_DIR} -Ddist_dir=${DIST_DIR} -Dbuild_dir=${BUILD_DIR} -Ddeps_dir=${DEPS_DIR} -Dreport_dir=${REPORT_DIR} -Dproto_dir=${PROTO_DIR} -Ddoc_dir=${DOC_DIR} configure
-		   COMMAND export JAVA_HOME=${Java6_HOME}\; ant -f ${ANT_BUILD_FILE} -Dbasedir=${BASE_DIR} -Ddist_dir=${DIST_DIR} -Dbuild_dir=${BUILD_DIR} -Ddeps_dir=${DEPS_DIR} -Dreport_dir=${REPORT_DIR} -Dproto_dir=${PROTO_DIR} -Ddoc_dir=${DOC_DIR}
+		   COMMAND cp -r -f ${CMAKE_CURRENT_SOURCE_DIR}/example ${CMAKE_CURRENT_BINARY_DIR}\; cp -r -f ${CMAKE_CURRENT_SOURCE_DIR}/jdbctest ${CMAKE_CURRENT_BINARY_DIR}\; cp -r -f ${CMAKE_CURRENT_SOURCE_DIR}/jiquery ${CMAKE_CURRENT_BINARY_DIR}\; cp -r -f ${CMAKE_CURRENT_SOURCE_DIR}/scidb4j ${CMAKE_CURRENT_BINARY_DIR}\; export JAVA_HOME=${Java7_HOME}\; ant -f ${ANT_BUILD_FILE} -Dbasedir=${BASE_DIR} -Ddist_dir=${DIST_DIR} -Dbuild_dir=${BUILD_DIR} -Ddeps_dir=${DEPS_DIR} -Dreport_dir=${REPORT_DIR} -Dproto_dir=${PROTO_DIR} -Ddoc_dir=${DOC_DIR} configure
+		   COMMAND export JAVA_HOME=${Java7_HOME}\; ant -f ${ANT_BUILD_FILE} -Dbasedir=${BASE_DIR} -Ddist_dir=${DIST_DIR} -Dbuild_dir=${BUILD_DIR} -Ddeps_dir=${DEPS_DIR} -Dreport_dir=${REPORT_DIR} -Dproto_dir=${PROTO_DIR} -Ddoc_dir=${DOC_DIR}
 		   )
 
 #-----------------------------------------------------------------------------
