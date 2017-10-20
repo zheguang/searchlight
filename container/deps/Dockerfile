@@ -33,7 +33,7 @@ RUN mkdir -p objs/util
 RUN mkdir -p objs/base
 RUN mkdir -p objs/linear_solver
 RUN mkdir -p objs/sat
-RUN mkidr -p objs/algorithms
+RUN mkdir -p objs/algorithms
 RUN mkdir -p objs/graph
 RUN mkdir -p lib
 RUN make cc

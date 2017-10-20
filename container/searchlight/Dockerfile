@@ -6,3 +6,4 @@ WORKDIR /searchlight/build
 RUN cmake ..
 RUN make
 RUN make install
+RUN ldconfig
