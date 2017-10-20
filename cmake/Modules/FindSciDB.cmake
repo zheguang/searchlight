@@ -12,11 +12,10 @@
 
 # Establish a hint
 set(TRY_SCIDB_VERSION "14.12")
-set(SCIDB_VERSION_MINOR "0.9095")
 if (NOT SCIDB_DIR)
     message(STATUS "You can use SCIDB_DIR variable to specify the SciDb sources directory. Using the defaut hint.")
     # assume we have a common source directory for projects
-    set(SCIDB_DIR ${CMAKE_SOURCE_DIR}/third_party/scidb-${TRY_SCIDB_VERSION}.${SCIDB_VERSION_MINOR})
+    set(SCIDB_DIR ${CMAKE_SOURCE_DIR}/../scidb-${TRY_SCIDB_VERSION})
 endif()
 message(STATUS "Using ${SCIDB_DIR} as the SciDb hint directory...")
 
