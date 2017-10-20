@@ -13,7 +13,7 @@
 if (NOT ORTOOLS_DIR)
     message(STATUS "You can use ORTOOLS_DIR variable to specify the or-tools directory. Using the defaut hint.")
     # assume we have a common source directory for projects
-    set(ORTOOLS_DIR ${CMAKE_SOURCE_DIR}/../or-tools)
+    set(ORTOOLS_DIR ${CMAKE_SOURCE_DIR}/third_party/or-tools)
 endif()
 message(STATUS "Using ${ORTOOLS_DIR} as the or-tools hint directory...")
 

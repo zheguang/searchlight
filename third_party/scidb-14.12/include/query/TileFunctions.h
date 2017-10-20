@@ -725,13 +725,13 @@ bool isNanValue(T value)
 template<> inline
 bool isNanValue<double>(double value)
 {
-    return isnan(value);
+    return std::isnan(value);
 }
 
 template<> inline
 bool isNanValue<float>(float value)
 {
-    return isnan(value);
+    return std::isnan(value);
 }
 
 template <typename TS, typename TSR>

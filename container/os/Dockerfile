@@ -45,3 +45,6 @@ RUN apt-get install -y \
       libmpich-dev mpich \
       ant ant-contrib ant-contrib-cpptasks \
       junit
+
+# searchlight deps
+RUN apt-get install -y libfftw3-dev

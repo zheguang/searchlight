@@ -1,5 +1,5 @@
 # use parent image
-FROM searchlight-os
+FROM zheguang/searchlight-os
 
 # copy project files from host to working directory in container
 #ADD . /searchlight
