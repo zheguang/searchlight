@@ -42,8 +42,6 @@ RUN apt-get install -y \
       libblas-dev \
       liblapack-dev \
       libboost-all-dev \
-      #protobuf-compiler libprotobuf-dev \
       libmpich-dev mpich \
       ant ant-contrib ant-contrib-cpptasks \
       junit
-      #libprotobuf-java

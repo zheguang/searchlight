@@ -46,6 +46,7 @@ WORKDIR /searchlight/third_party/scidb-14.12/build
 RUN cmake ..
 RUN make
 RUN make install
+RUN ldconfig
 
 # reset working directory
 WORKDIR /searchlight
