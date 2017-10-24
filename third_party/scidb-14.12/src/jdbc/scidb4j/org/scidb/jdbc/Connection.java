@@ -21,6 +21,7 @@
 */
 package org.scidb.jdbc;
 
+import java.util.concurrent.Executor;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Map;
@@ -378,5 +379,32 @@ public class Connection implements java.sql.Connection
     {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public int getNetworkTimeout() throws SQLException
+    {
+        return 0;
+    }
+
+    @Override
+    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException
+    {
+    }
+
+    @Override
+    public void abort(Executor executor) throws SQLException
+    {
+    }
+
+    @Override
+    public String getSchema() throws SQLException
+    {
+         return null;
+    }
+
+    @Override
+    public void setSchema(String schema) throws SQLException
+    {
     }
 }

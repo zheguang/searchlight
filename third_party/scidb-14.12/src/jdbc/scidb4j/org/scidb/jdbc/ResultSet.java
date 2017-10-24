@@ -1858,4 +1858,16 @@ public class ResultSet implements java.sql.ResultSet
         // TODO Auto-generated method stub
         
     }
+
+    @Override
+    public <T> T getObject(int columnIndex, Class<T> type) throws SQLException
+    {
+        return null;
+    }
+
+    @Override
+    public <T> T getObject(String columnLabel, Class<T> type) throws SQLException
+    {
+        return null;
+    }
 }

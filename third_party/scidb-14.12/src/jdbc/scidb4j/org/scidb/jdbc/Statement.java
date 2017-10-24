@@ -399,4 +399,16 @@ public class Statement implements java.sql.Statement
         // TODO Auto-generated method stub
         return false;
     }
+
+    @Override
+    public boolean isCloseOnCompletion() throws SQLException 
+    {
+        return false;
+    }
+
+    @Override
+    public void closeOnCompletion() throws SQLException
+    {
+    }
+
 }

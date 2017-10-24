@@ -99,4 +99,10 @@ public class Driver implements java.sql.Driver
                     + e.getMessage());
         }
     }
+
+    @Override
+    public Logger getParentLogger() throws SQLFeatureNotSupportedException
+    {
+        return null;
+    }
 }
