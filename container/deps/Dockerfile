@@ -28,14 +28,7 @@ RUN ln -s /searchlight/third_party/protobuf-2.6.1/java/target/protobuf-java-2.6.
 WORKDIR /searchlight/third_party/or-tools
 # https://developers.google.com/optimization/introduction/installing.html#basic_install_unix
 # cpp
-RUN mkdir -p objs/constraint_solver
-RUN mkdir -p objs/util
-RUN mkdir -p objs/base
-RUN mkdir -p objs/linear_solver
-RUN mkdir -p objs/sat
-RUN mkdir -p objs/algorithms
-RUN mkdir -p objs/graph
-RUN mkdir -p lib
+RUN mkdir -p objs/constraint_solver objs/util objs/base objs/linear_solver objs/sat objs/algorithms objs/graph lib
 RUN make cc
 RUN ldconfig
 
@@ -47,6 +40,7 @@ RUN cmake ..
 RUN make
 RUN make install
 RUN ldconfig
+
 
 # reset working directory
 WORKDIR /searchlight
