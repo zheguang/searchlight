@@ -1,6 +1,7 @@
 # use parent image
 FROM ubuntu:14.04
 
+RUN apt-get update
 
 # for cmake 3.2 on ubuntu 14.04, required by or-tools
 RUN apt-get install software-properties-common -y

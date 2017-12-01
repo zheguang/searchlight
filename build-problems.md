@@ -14,3 +14,16 @@ set(Boost_NO_SYSTEM_PATHS FALSE)
 
 error: 'treat_direct' was not declared in this scope
 This means libpqxxx4 was installed instead of libpqxx3.  Install libpqxx3 instead.
+
+
+# scidb
+After build everything, prepare scidb cluster:
+```
+bash scidb-prepare-db.sho
+```
+With postgres admin: default (postgres)
+Admin password: default (empty)
+System catelog owner: sl
+System catelog owner password: sl
+System catelog db name: test
+
