@@ -3,7 +3,7 @@ FROM zheguang/searchlight-deps
 RUN apt-get install -y postgresql postgresql-contrib python-paramiko openssh-client openssh-server
 
 # install postgres locale
-RUN apt-get install language-pack-es-base
+RUN apt-get install -y language-pack-es-base
 RUN locale-gen
 RUN locale-gen en_US.UTF-8
 
@@ -41,19 +41,20 @@ RUN chown -R sl:sl /data
 #  /bin/bash
 
 # copy postgres configs
+WORKDIR /searchlight
 RUN cp container/searchlight/postgresql.conf /etc/postgresql/9.3/main/
 RUN cp container/searchlight/pg_hba.conf /etc/postgresql/9.3/main/
 
 # create postgres user and test database
+# https://docs.docker.com/engine/examples/postgresql_service/#installing-postgresql-on-docker
+USER postgres
 RUN service postgresql start
-RUN createdb
-RUN psql -c "create user sl with password 'sl' superuser"
-RUN psql -c "create database test with owner = sl"
-
-# create database sl
-USER sl
-RUN createdb
-USER root
+RUN /etc/init.d/postgresql start &&\
+  psql --command "CREATE USER sl WITH SUPERUSER PASSWORD 'sl';" &&\
+  createdb -O sl sl &&\
+  psql -c "create database test with owner = sl;"
+#RUN psql -c "create user sl with password 'sl' superuser"
+#RUN psql -c "create database test with owner = sl"
 
 # create ssh keys
 USER sl
@@ -66,5 +67,11 @@ WORKDIR /searchlight
 RUN cp container/searchlight/config.ini.two-node /opt/scidb/14.12/etc/config.ini
 
 USER root
-RUN mkdir /var/run/sshd
+RUN mkdir -p /var/run/sshd
+RUN mkdir -p /var/lib/postgresql/9.3/main
 CMD ["/usr/sbin/sshd", "-D"]
+
+#CMD sh container/searchlight/entrypoint.sh
+
+#CMD /usr/sbin/sshd -D && /usr/lib/postgresql/9.3/bin/postgres -D /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf
+#CMD service ssh start && service postgresql start
