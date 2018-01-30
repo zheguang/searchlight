@@ -1,0 +1,13 @@
+[test]
+server-0=bsn01,1
+server-1=bsn03,2
+ssh-port=1122
+pg-port=15432
+db_user=sl
+db_passwd=sl
+install_root=/opt/scidb/14.12
+pluginsdir=/opt/scidb/14.12/lib/scidb/plugins
+logconf=/opt/scidb/14.12/share/scidb/log4cxx.properties
+base-path=/data/sl
+base-port=11239
+interface=eth0
