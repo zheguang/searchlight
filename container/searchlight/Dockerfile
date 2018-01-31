@@ -71,7 +71,5 @@ RUN mkdir -p /var/run/sshd
 RUN mkdir -p /var/lib/postgresql/9.3/main
 CMD ["/usr/sbin/sshd", "-D"]
 
-#CMD sh container/searchlight/entrypoint.sh
-
 #CMD /usr/sbin/sshd -D && /usr/lib/postgresql/9.3/bin/postgres -D /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf
 #CMD service ssh start && service postgresql start
