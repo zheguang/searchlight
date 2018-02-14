@@ -1,8 +1,8 @@
 [test]
 server-0=bsn01,1
 server-1=bsn03,2
-ssh-port=1122
-pg-port=15432
+#ssh-port=1122
+#pg-port=15432
 db_user=sl
 db_passwd=sl
 install_root=/opt/scidb/14.12

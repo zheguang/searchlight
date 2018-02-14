@@ -695,6 +695,7 @@ def executeLocal( cmdList,
         try:
 
                 # print currentDir, cmdList, sout, useShell
+                print('[local] ' + str(cmdList))
                 p = subprocess.Popen(cmdList, env=my_env, cwd=currentDir, stderr=serr, stdout=sout, shell=useShell, executable=executable)
 
                 if waitFlag:
@@ -795,6 +796,7 @@ def executeRemote( cmdList, srv, liid,
         # end if
 
         cmdString = prepareRemoteShellCmd(cmdString)
+        print('[remote] ' + str(cmdString))
 
         # print "cmdString: ",cmdString
         try:
@@ -1844,9 +1846,9 @@ class Context:
                 installPath='',
                 baseDataPath='',
                 dataDirPrefix='',
-                basePort = 1239,
-                sshPort = 22,
-                pgPort = "5432",
+                basePort = 11239,
+                sshPort = 1122,
+                pgPort = "15432",
                 keyFilenameList = [],
                 args=sys.argv):
       self._config_file = config_file;
