@@ -1,6 +1,7 @@
 FROM zheguang/searchlight-deps
 
-RUN apt-get install -y postgresql postgresql-contrib python-paramiko openssh-client openssh-server
+RUN apt-get update
+RUN apt-get install -y --fix-missing postgresql postgresql-contrib python-paramiko openssh-client openssh-server
 
 # install postgres locale
 RUN apt-get install -y language-pack-es-base
@@ -59,6 +60,7 @@ RUN /etc/init.d/postgresql start &&\
 # create ssh keys
 USER sl
 
+RUN rm -rf ~/.ssh/*
 RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 RUN cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
