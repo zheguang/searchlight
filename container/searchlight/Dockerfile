@@ -8,16 +8,15 @@ RUN apt-get install -y language-pack-es-base
 RUN locale-gen
 RUN locale-gen en_US.UTF-8
 
-
 WORKDIR /searchlight
 RUN git pull origin
 
-RUN mkdir -p build
-WORKDIR /searchlight/build
-RUN cmake -DSL_LIB_DIR=/opt/scidb/14.12/lib/scidb/plugins/ ..
-RUN make -j
-RUN make -j install
-RUN ldconfig
+#RUN mkdir -p build
+#WORKDIR /searchlight/build
+#RUN cmake -DSL_LIB_DIR=/opt/scidb/14.12/lib/scidb/plugins/ ..
+#RUN make -j
+#RUN make -j install
+#RUN ldconfig
 
 # ports for cross-container communication
 # postgres
@@ -30,7 +29,10 @@ EXPOSE 1200-1300
 RUN useradd -G sudo -m -s /bin/bash sl
 RUN echo "sl:sl" | chpasswd
 
-RUN mkdir -p /data/sl
+#RUN mkdir -p /data/sl
+RUN mkdir -p /data
+VOLUME /data/sl
+VOLUME /data/dump
 
 RUN chown -R sl:sl /searchlight
 RUN chown -R sl:sl /opt/scidb
@@ -49,7 +51,6 @@ RUN cp container/searchlight/pg_hba.conf /etc/postgresql/9.3/main/
 # create postgres user and test database
 # https://docs.docker.com/engine/examples/postgresql_service/#installing-postgresql-on-docker
 USER postgres
-RUN service postgresql start
 RUN /etc/init.d/postgresql start &&\
   psql --command "CREATE USER sl WITH SUPERUSER PASSWORD 'sl';" &&\
   createdb -O sl sl &&\
